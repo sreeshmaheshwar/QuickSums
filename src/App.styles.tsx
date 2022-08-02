@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     * {
-        font-family: 'Times New Roman', Times, serif
+        font-family: "Abel", sans-serif;
     }
 
     input {
@@ -29,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
         -moz-appearance: none;
         appearance: none;
         background: #cacaca;
+
         font-size: 25px;
         padding: 12px;
         border-radius: 10px;
@@ -37,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     input::placeholder {
-        color: #a7a6a6;
+        color: #8a8a8a;
     }
 `;
 
@@ -56,13 +57,14 @@ export const Wrapper = styled.div`
     font-family: "Noto Sans JP", sans-serif;
     font-size: 64px;
     margin: 0px;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     padding-top: 0px;
   }
 
   .question-statistics {
-    font-size: 20px;
-    padding-bottom: 10px;
+    font-size: 25px;
+    padding-top: 75px;
+    padding-bottom: 20px;
     margin: 0px;
     font-style: italic;
     color: #96a0b0;
@@ -70,10 +72,9 @@ export const Wrapper = styled.div`
 
   .question {
     font-weight: bold;
-    padding-bottom: 75px;
+    padding-bottom: 60px;
     margin: 0px;
     font-size: 75px;
-    font-family: "Abel", sans-serif;
   }
 
   .start {
