@@ -1,9 +1,3 @@
-import React from "react";
-
-type Props = {
-  questionNumber: number;
-};
-
 const getStatistics = (questionNumber: number) => {
   if (questionNumber === 0) {
     return "Answer a question to start the countdown!";
@@ -14,7 +8,7 @@ const getStatistics = (questionNumber: number) => {
   }
 };
 
-const QuestionStatistics: React.FC<Props> = ({ questionNumber }) => (
+const QuestionStatistics = (questionNumber: number) => (
   <div>
     <p className="question-statistics"> {getStatistics(questionNumber)} </p>
   </div>

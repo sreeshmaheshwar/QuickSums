@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import logo from "./images/logo.png";
+import React, { useState } from "react";
 // Components
+import Header from "./components/Header";
 import QuestionStatistics from "./components/QuestionStatistics";
 import QuestionPrompt from "./components/QuestionPrompt";
 import InputBox from "./components/InputBox";
-import Timer from "./Timer";
 // Types
 import { Question, QuestionDifficulty } from "./generator/questionGenerator";
 // Question Generation
@@ -13,6 +12,8 @@ import fetchQuestions from "./generator/questionGenerator";
 import { GlobalStyle, Wrapper } from "./App.styles";
 
 const NUM_QUESTIONS = 1000;
+const COUNTDOWN_TIME = 10;
+const MILLISECONDS_PER_SECOND = 1000;
 
 const NOVICE: QuestionDifficulty = {
   minNumber: 1,
@@ -40,7 +41,6 @@ const ADVANCED: QuestionDifficulty = {
 
 const App = () => {
   const [quizOngoing, setQuizOngoing] = useState<boolean>(false);
-  const [timerOngoing, setTimerOngoing] = useState<boolean>(false);
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
@@ -62,8 +62,11 @@ const App = () => {
 
   const endQuiz = () => {
     setQuizOngoing(false);
-    setTimerOngoing(false);
     setQuizCompleted(true);
+  };
+
+  const startCountdown = () => {
+    setTimeout(endQuiz, COUNTDOWN_TIME * MILLISECONDS_PER_SECOND);
   };
 
   const checkUserAnswer = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -73,7 +76,9 @@ const App = () => {
     ) {
       setInputBoxValue("");
       setInputBoxPlaceHolder("");
-      if (questionIndex === 0) setTimerOngoing(true);
+      if (questionIndex === 0) {
+        startCountdown();
+      }
       setQuestionIndex(questionIndex + 1);
     }
   };
@@ -90,27 +95,27 @@ const App = () => {
     <>
       <GlobalStyle />
       <Wrapper>
-        <img src={logo} alt="Logo" />
-        <h1>QuickSums</h1>
-        {quizCompleted && <h2>Your score is {questionIndex}! Why not play again?</h2>}
+        <Header />
+        {quizCompleted && (
+          <h2 className="endingMessage">
+            Your score is {questionIndex}! Why not play again?
+          </h2>
+        )}
         {!quizOngoing && (
           <button className="start" onClick={startQuiz}>
             Start Quiz
           </button>
         )}
-        {quizOngoing && <QuestionStatistics questionNumber={questionIndex} />}
-        {quizOngoing && (
-          <QuestionPrompt questionString={questions[questionIndex].prompt} />
-        )}
+        {quizOngoing && QuestionStatistics(questionIndex)}
+        {quizOngoing && QuestionPrompt(questions[questionIndex].prompt)}
         {quizOngoing && (
           <InputBox
-            boxPlaceholder={inputBoxPlaceholder}
-            boxValue={inputBoxValue}
-            checkUserAnswer={checkUserAnswer}
+            placeholder={inputBoxPlaceholder}
+            value={inputBoxValue}
+            callback={checkUserAnswer}
             checkValidInput={checkValidNumberEntered}
           />
         )}
-        {timerOngoing && <Timer endQuiz={endQuiz} />}
       </Wrapper>
     </>
   );

@@ -1,10 +1,4 @@
-import React from "react";
-
-type Props = {
-  questionString: string;
-};
-
-const QuestionPrompt: React.FC<Props> = ({ questionString }) => (
+const QuestionPrompt = (questionString: string) => (
   <div>
     <p className="question"> {questionString} </p>
   </div>

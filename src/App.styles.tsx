@@ -2,44 +2,23 @@ import styled, { createGlobalStyle } from "styled-components";
 import BackgroundImage from "./images/background.jpg";
 
 export const GlobalStyle = createGlobalStyle`
-    html {
-        height: 100%;
-    }
+  html {
+    height: 100%;
+  }
 
-    body {
-        color: #cacaca;
-        background-image: url(${BackgroundImage});
-        background-size: cover;
-        margin: 0;
-        padding: 0 20px;
-        display: flex;
-        justify-content: center;
-    }
+  body {
+    color: #cacaca;
+    background-image: url(${BackgroundImage});
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+  }
 
-    * {
-        font-family: "Abel", sans-serif;
-    }
-
-    input {
-        color: #444545;
-        caret-color: #696c6d;
-        border: none;
-        -webkit-appearance: none;
-        -ms-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background: #cacaca;
-
-        font-size: 25px;
-        padding: 12px;
-        border-radius: 10px;
-        width: 300px;
-        outline: none;
-    }
-
-    input::placeholder {
-        color: #8a8a8a;
-    }
+  * {
+    padding: 0 20px;
+    margin: 0;
+    font-family: "Abel", sans-serif;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -47,25 +26,27 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  img {
+  .logo {
     padding-top: 20px;
     width: 150px;
     height: 150px;
   }
 
-  h1 {
+  .quizName {
     font-family: "Noto Sans JP", sans-serif;
     font-size: 64px;
-    margin: 0px;
     padding-bottom: 50px;
     padding-top: 0px;
   }
 
+  .endingMessage {
+    padding-bottom: 50px;
+  }
+
   .question-statistics {
     font-size: 25px;
-    padding-top: 75px;
+    padding-top: 10px;
     padding-bottom: 20px;
-    margin: 0px;
     font-style: italic;
     color: #96a0b0;
   }
@@ -73,7 +54,6 @@ export const Wrapper = styled.div`
   .question {
     font-weight: bold;
     padding-bottom: 60px;
-    margin: 0px;
     font-size: 75px;
   }
 
@@ -88,6 +68,22 @@ export const Wrapper = styled.div`
     border-radius: 10px;
     width: 250px;
     outline: none;
-    margin: 0px;
+  }
+
+  .userInputBox {
+    color: #444545;
+    caret-color: #696c6d;
+    border: none;
+    appearance: none;
+    background: #cacaca;
+    font-size: 25px;
+    padding: 12px;
+    border-radius: 10px;
+    width: 300px;
+    outline: none;
+  }
+
+  .userInputBox::placeholder {
+    color: #8a8a8a;
   }
 `;
