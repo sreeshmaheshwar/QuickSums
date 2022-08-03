@@ -3,15 +3,15 @@ import React from "react";
 type Props = {
   placeholder: string;
   value: string;
-  checkValidInput: React.ChangeEventHandler<HTMLInputElement>;
-  callback: React.KeyboardEventHandler<HTMLInputElement>;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  handleKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
 };
 
 const InputBox: React.FC<Props> = ({
   placeholder,
   value,
-  checkValidInput,
-  callback,
+  handleChange,
+  handleKeyDown,
 }) => (
   <div>
     <input
@@ -21,8 +21,8 @@ const InputBox: React.FC<Props> = ({
       maxLength={10}
       placeholder={placeholder}
       value={value}
-      onChange={checkValidInput}
-      onKeyDown={callback}
+      onChange={handleChange}
+      onKeyDown={handleKeyDown}
     />
   </div>
 );

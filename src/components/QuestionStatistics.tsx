@@ -1,18 +1,25 @@
+import React from "react";
+
 const getStatistics = (questionsAnswered: number) => {
-  if (questionsAnswered === 0) {
-    return "Answer a question to start the countdown!";
-  } else if (questionsAnswered === 1) {
-    return "1 question answered";
-  } else {
-    return `${questionsAnswered} questions answered`;
+  switch (questionsAnswered) {
+    case 0:
+      return "Answer a question to start the countdown!";
+    case 1:
+      return "1 question answered";
+    default:
+      return `${questionsAnswered} questions answered`
+      break;
   }
 };
 
-const QuestionStatistics = (prop: { questionsAnswered: number }) => (
+type Props = {
+  questionsAnswered: number;
+};
+
+const QuestionStatistics: React.FC<Props> = ( { questionsAnswered }) => (
   <div>
     <p className="question-statistics">
-      {" "}
-      {getStatistics(prop.questionsAnswered)}{" "}
+      {getStatistics(questionsAnswered)}
     </p>
   </div>
 );

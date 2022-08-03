@@ -55,7 +55,7 @@ const App = () => {
     setQuizCompleted(false);
     setQuizOngoing(false);
 
-    const generatedQuestions = await fetchQuestions(NUM_QUESTIONS, NOVICE); // TODO: allow user to choose difficulty level
+    const generatedQuestions = await fetchQuestions(NUM_QUESTIONS, BEGINNER); // TODO: allow user to choose difficulty level
 
     setQuestions(generatedQuestions);
     setQuestionIndex(0);
@@ -74,10 +74,10 @@ const App = () => {
   };
   
   // check the user-inputted answer against the correct answer, starting countdown if nevessary
-  const checkUserAnswer = (event: { key: string; target: { value: string; }; }) => {
+  const checkUserAnswer = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
-      event.key === "Enter" &&
-      event.target.value === questions[questionIndex].correctAnswer
+      e.key === "Enter" &&
+      e.target.value === questions[questionIndex].correctAnswer
     ) {
       setInputBoxValue("");
       setInputBoxPlaceHolder("");
@@ -113,8 +113,8 @@ const App = () => {
           <InputBox
             placeholder={inputBoxPlaceholder}
             value={inputBoxValue}
-            callback={checkUserAnswer}
-            checkValidInput={(e) => {
+            handleKeyDown={checkUserAnswer}
+            handleChange={(e) => {
               setInputBoxValue((v) =>
                 e.target.validity.valid ? e.target.value : v
               );
@@ -123,7 +123,7 @@ const App = () => {
         )}
       </Wrapper>
     </>
-  );
+  )
 };
 
 export default App;
