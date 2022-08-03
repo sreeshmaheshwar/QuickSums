@@ -3,8 +3,8 @@ import React from "react";
 type Props = {
   placeholder: string;
   value: string;
-  checkValidInput: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  callback: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  checkValidInput: React.ChangeEventHandler<HTMLInputElement>;
+  callback: React.KeyboardEventHandler<HTMLInputElement>;
 };
 
 const InputBox: React.FC<Props> = ({

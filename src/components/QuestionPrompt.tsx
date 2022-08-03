@@ -1,6 +1,6 @@
-const QuestionPrompt = (questionString: string) => (
+const QuestionPrompt = (prop: { questionString: string }) => (
   <div>
-    <p className="question"> {questionString} </p>
+    <p className="question"> {prop.questionString} </p>
   </div>
 );
 

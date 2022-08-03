@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 // Components
 import Header from "./components/Header";
-import QuestionStatistics from "./components/QuestionStatistics";
-import QuestionPrompt from "./components/QuestionPrompt";
 import InputBox from "./components/InputBox";
+import QuestionPrompt from "./components/QuestionPrompt";
+import QuestionStatistics from "./components/QuestionStatistics";
 // Types
-import { Question, QuestionDifficulty } from "./generator/questionGenerator";
+import { Question, QuestionDifficulty } from "./question-generation/fetchQuestions";
 // Question Generation
-import fetchQuestions from "./generator/questionGenerator";
+import fetchQuestions from "./question-generation/fetchQuestions";
 // Styles
 import { GlobalStyle, Wrapper } from "./App.styles";
 
@@ -39,11 +39,15 @@ const ADVANCED: QuestionDifficulty = {
   additionOnly: false,
 };
 
+const initialPlaceholder: string = "Enter answer, e.g. 42";
+
 const App = () => {
   const [quizOngoing, setQuizOngoing] = useState<boolean>(false);
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
+
   const [questions, setQuestions] = useState<Question[]>([]);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
+
   const [inputBoxValue, setInputBoxValue] = useState<string>("");
   const [inputBoxPlaceholder, setInputBoxPlaceHolder] = useState<string>("");
 
@@ -56,7 +60,7 @@ const App = () => {
     setQuestions(generatedQuestions);
     setQuestionIndex(0);
     setInputBoxValue("");
-    setInputBoxPlaceHolder("Enter answer, e.g. 42");
+    setInputBoxPlaceHolder(initialPlaceholder);
     setQuizOngoing(true);
   };
 
@@ -68,8 +72,9 @@ const App = () => {
   const startCountdown = () => {
     setTimeout(endQuiz, COUNTDOWN_TIME * MILLISECONDS_PER_SECOND);
   };
-
-  const checkUserAnswer = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  
+  // check the user-inputted answer against the correct answer, starting countdown if nevessary
+  const checkUserAnswer = (event: { key: string; target: { value: string; }; }) => {
     if (
       event.key === "Enter" &&
       event.target.value === questions[questionIndex].correctAnswer
@@ -81,14 +86,6 @@ const App = () => {
       }
       setQuestionIndex(questionIndex + 1);
     }
-  };
-
-  const checkValidNumberEntered = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    setInputBoxValue((val) =>
-      event.target.validity.valid ? event.target.value : val
-    );
   };
 
   return (
@@ -106,14 +103,22 @@ const App = () => {
             Start Quiz
           </button>
         )}
-        {quizOngoing && QuestionStatistics(questionIndex)}
-        {quizOngoing && QuestionPrompt(questions[questionIndex].prompt)}
+        {quizOngoing && (
+          <QuestionStatistics questionsAnswered={questionIndex} />
+        )}
+        {quizOngoing && (
+          <QuestionPrompt questionString={questions[questionIndex].prompt} />
+        )}
         {quizOngoing && (
           <InputBox
             placeholder={inputBoxPlaceholder}
             value={inputBoxValue}
             callback={checkUserAnswer}
-            checkValidInput={checkValidNumberEntered}
+            checkValidInput={(e) => {
+              setInputBoxValue((v) =>
+                e.target.validity.valid ? e.target.value : v
+              );
+            }}
           />
         )}
       </Wrapper>

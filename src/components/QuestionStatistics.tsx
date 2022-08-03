@@ -1,16 +1,19 @@
-const getStatistics = (questionNumber: number) => {
-  if (questionNumber === 0) {
+const getStatistics = (questionsAnswered: number) => {
+  if (questionsAnswered === 0) {
     return "Answer a question to start the countdown!";
-  } else if (questionNumber === 1) {
+  } else if (questionsAnswered === 1) {
     return "1 question answered";
   } else {
-    return `${questionNumber} questions answered`;
+    return `${questionsAnswered} questions answered`;
   }
 };
 
-const QuestionStatistics = (questionNumber: number) => (
+const QuestionStatistics = (prop: { questionsAnswered: number }) => (
   <div>
-    <p className="question-statistics"> {getStatistics(questionNumber)} </p>
+    <p className="question-statistics">
+      {" "}
+      {getStatistics(prop.questionsAnswered)}{" "}
+    </p>
   </div>
 );
 
