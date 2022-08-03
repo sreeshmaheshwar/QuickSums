@@ -15,7 +15,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   * {
-    padding: 0 20px;
     margin: 0;
     font-family: "Abel", sans-serif;
   }
@@ -25,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     color: #444545;
     border: none;
     appearance: none;
-    background: #aebdcc;
+    background: #c1cdd9;
     font-size: 20px;
     padding: 12px;
     border-radius: 10px;
@@ -43,6 +42,10 @@ export const Wrapper = styled.div`
     padding-top: 20px;
     width: 150px;
     height: 150px;
+  }
+
+  .start {
+    margin: 50px;
   }
 
   .quizName {
@@ -85,5 +88,17 @@ export const Wrapper = styled.div`
 
   .userInputBox::placeholder {
     color: #8a8a8a;
+  }
+
+  .selection {
+    margin: 10px;
+    padding: 10px;
+    color: #3b1b1b;
+    font-size: 20px;
+  }
+
+  .choice {
+    font-style: italic;
+    font-size: 20px;
   }
 `;

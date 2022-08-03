@@ -10,6 +10,7 @@ import fetchQuestions from "./question-generation/fetchQuestions";
 import { GlobalStyle, Wrapper } from "./App.styles";
 import JoinScreen from "./components/screens/JoinScreen";
 import GameScreen from "./components/screens/GameScreen";
+import DropDownOption from "./types/DropDownOption";
 
 const MAX_QUESTIONS = 1000;
 
@@ -18,9 +19,16 @@ const App = () => {
   const [gameScreen, setGameScreen] = useState<boolean>(false);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
+  const [selectedDifficulty, setSelectedDifficulty] =
+    useState<DropDownOption | null>(null);
+  const [selectedTimeControl, setSelectedTimeControl] =
+    useState<DropDownOption | null>(null);
 
   const startGame = async () => {
-    const generatedQuestions = await fetchQuestions(MAX_QUESTIONS, "Beginner");
+    const generatedQuestions = await fetchQuestions(
+      MAX_QUESTIONS,
+      selectedDifficulty?.value
+    );
     setQuestions(generatedQuestions);
     setQuestionIndex(0);
     setJoinScreen(false);
@@ -33,12 +41,19 @@ const App = () => {
       <Wrapper>
         <PageHeader />
         {joinScreen ? (
-          <JoinScreen callBack={startGame} />
+          <JoinScreen
+            callBack={startGame}
+            selectedDifficulty={selectedDifficulty}
+            setSelectedDifficulty={setSelectedDifficulty}
+            selectedTimeControl={selectedTimeControl}
+            setSelectedTimeControl={setSelectedTimeControl}
+          />
         ) : gameScreen ? (
           <GameScreen
             questions={questions}
             questionIndex={questionIndex}
             incrementQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
+            countdownTime={selectedTimeControl?.value}
             endGame={() => setGameScreen(false)}
           />
         ) : (

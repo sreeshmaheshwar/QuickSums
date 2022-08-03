@@ -4,11 +4,9 @@ export type QuestionDifficulty = {
   additionOnly: boolean;
 };
 
-export type QuestionDifficultyId =
-  | "Novice"
-  | "Beginner"
-  | "Intermediate"
-  | "Advanced";
+export const SupportedDifficulties = ["Novice", "Beginner", "Intermediate", "Advanced"] as const;
+
+export type QuestionDifficultyId = typeof SupportedDifficulties[number];
 
 export const IdToDifficulty: Record<QuestionDifficultyId, QuestionDifficulty> =
   {
