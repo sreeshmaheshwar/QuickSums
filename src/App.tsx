@@ -1,6 +1,6 @@
 import { useState } from "react";
 // Components
-import Header from "./components/Header";
+import PageHeader from "./components/Header";
 import GameOverScreen from "./components/screens/GameOverScreen";
 // Types
 import {
@@ -43,7 +43,6 @@ const ADVANCED: QuestionDifficulty = {
 const App = () => {
   const [joinScreen, setJoinScreen] = useState<boolean>(true);
   const [gameScreen, setGameScreen] = useState<boolean>(false);
-  const [gameOverScreen, setGameOverScreen] = useState<boolean>(false);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
 
@@ -55,32 +54,22 @@ const App = () => {
     setGameScreen(true);
   };
 
-  const endGame = () => {
-    setGameScreen(false);
-    setGameOverScreen(true);
-  };
-
-  const playAgain = () => {
-    setGameOverScreen(false);
-    setJoinScreen(true);
-  };
-
   return (
     <>
       <GlobalStyle />
       <Wrapper>
-        <Header />
-        {joinScreen && <JoinScreen callBack={startGame} />}
-        {gameScreen && (
+        <PageHeader />
+        {joinScreen ? (
+          <JoinScreen callBack={startGame} />
+        ) : gameScreen ? (
           <GameScreen
             questions={questions}
             questionIndex={questionIndex}
             incrementQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
-            callBack={endGame}
+            callBack={() => setGameScreen(false)}
           />
-        )}
-        {gameOverScreen && (
-          <GameOverScreen score={questionIndex} callBack={playAgain} />
+        ) : (
+          <GameOverScreen score={questionIndex} callBack={() => setJoinScreen(true)} />
         )}
       </Wrapper>
     </>
