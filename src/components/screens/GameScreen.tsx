@@ -2,23 +2,23 @@ import React, { useState } from "react";
 import QuestionStatistics from "../QuestionStatistics";
 import QuestionPrompt from "../QuestionPrompt";
 import InputBox from "../InputBox";
-import { Question } from "../../question-generation/fetchQuestions";
+import Question from "../../types/Question";
 
-const COUNTDOWN_TIME = 2;
+const COUNTDOWN_TIME = 15;
 const MILLISECONDS_PER_SECOND = 1000;
 
 type Props = {
   questions: Question[];
   questionIndex: number;
   incrementQuestionIndex: () => void;
-  callBack: () => void;
+  endGame: () => void;
 };
 
 const GameScreen: React.FC<Props> = ({
   questions,
   questionIndex,
   incrementQuestionIndex,
-  callBack,
+  endGame,
 }) => {
   const [inputBoxValue, setInputBoxValue] = useState<string>("");
   const [inputBoxPlaceholder, setInputBoxPlaceHolder] = useState<string>(
@@ -26,7 +26,7 @@ const GameScreen: React.FC<Props> = ({
   );
 
   const startCountdown = () => {
-    setTimeout(callBack, COUNTDOWN_TIME * MILLISECONDS_PER_SECOND);
+    setTimeout(endGame, COUNTDOWN_TIME * MILLISECONDS_PER_SECOND);
   };
 
   const checkInputtedAnswer = (e: React.KeyboardEvent<HTMLInputElement>) => {

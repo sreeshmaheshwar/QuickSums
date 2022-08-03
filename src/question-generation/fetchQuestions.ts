@@ -1,17 +1,10 @@
-export type Question = {
-    prompt: string;
-    correctAnswer: string;
-};
-
-export interface QuestionDifficulty {
-    minNumber: number;
-    maxNumber: number;
-    additionOnly: boolean;
-};
+import Question from "../types/Question";
+import { QuestionDifficulty, QuestionDifficultyId, IdToDifficulty } from "../types/QuestionDifficulty";
 
 // TODO: support multiple operators & use additionOnly flag
-const fetchQuestions = async (numQuestions: number, difficulty: QuestionDifficulty) => {
+const fetchQuestions = async (numQuestions: number, difficultyId: QuestionDifficultyId) => {
     const questions: Question[] = new Array(numQuestions);
+    const difficulty = IdToDifficulty[difficultyId];
     for (let i = 0; i < numQuestions; ++i) {
         questions[i] = generateRandomQuestion(difficulty);
     }
@@ -22,8 +15,9 @@ const fetchQuestions = async (numQuestions: number, difficulty: QuestionDifficul
 const generateRandomNumberInRange = (left: number, right: number) => Math.floor(Math.random() * (right - left + 1)) + left;
 
 const generateRandomQuestion = (difficulty: QuestionDifficulty) : Question => {
-    const firstNumber = generateRandomNumberInRange(difficulty.minNumber, difficulty.maxNumber);
-    const secondNumber = generateRandomNumberInRange(difficulty.minNumber, difficulty.maxNumber);
+    const {minNumber, maxNumber} = difficulty;
+    const firstNumber = generateRandomNumberInRange(minNumber, maxNumber);
+    const secondNumber = generateRandomNumberInRange(minNumber, maxNumber);
     return {
         prompt: `${firstNumber} + ${secondNumber}`,
         correctAnswer: `${firstNumber + secondNumber}`

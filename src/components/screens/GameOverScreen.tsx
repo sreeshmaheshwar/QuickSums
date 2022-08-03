@@ -2,10 +2,10 @@ import React from "react";
 
 type Props = {
   score: number;
-  callBack: () => void;
+  playAgain: () => void;
 };
 
-const GameOverScreen: React.FC<Props> = ({ score, callBack }) => {
+const GameOverScreen: React.FC<Props> = ({ score, playAgain }) => {
   return (
     <>
       <div>
@@ -15,7 +15,7 @@ const GameOverScreen: React.FC<Props> = ({ score, callBack }) => {
       </div>
       <div>
         {" "}
-        <button onClick={callBack}> Play Again </button>
+        <button onClick={playAgain}> Play Again </button>
       </div>
     </>
   );
