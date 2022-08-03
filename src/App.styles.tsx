@@ -19,6 +19,19 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: "Abel", sans-serif;
   }
+
+  button {
+    cursor: pointer;
+    color: #444545;
+    border: none;
+    appearance: none;
+    background: #aebdcc;
+    font-size: 20px;
+    padding: 12px;
+    border-radius: 10px;
+    width: 250px;
+    outline: none;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -55,19 +68,6 @@ export const Wrapper = styled.div`
     font-weight: bold;
     padding-bottom: 60px;
     font-size: 75px;
-  }
-
-  .start {
-    cursor: pointer;
-    color: #444545;
-    border: none;
-    appearance: none;
-    background: #aebdcc;
-    font-size: 20px;
-    padding: 12px;
-    border-radius: 10px;
-    width: 250px;
-    outline: none;
   }
 
   .userInputBox {

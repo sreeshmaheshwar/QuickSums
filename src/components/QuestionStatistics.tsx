@@ -8,7 +8,6 @@ const getStatistics = (questionsAnswered: number) => {
       return "1 question answered";
     default:
       return `${questionsAnswered} questions answered`
-      break;
   }
 };
 
