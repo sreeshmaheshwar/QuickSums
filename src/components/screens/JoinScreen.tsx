@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { SupportedDifficulties } from "../../types/QuestionDifficulty";
+import React from "react";
 import SelectField from "../SelectField";
 import DropDownOption, {
   difficultyOptions,

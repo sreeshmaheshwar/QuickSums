@@ -1,5 +1,5 @@
 import Question from "../types/Question";
-import { QuestionDifficulty } from "../types/QuestionDifficulty";
+import QuestionDifficulty from "../types/QuestionDifficulty";
 
 // TODO: support multiple operators & use additionOnly flag
 const fetchQuestions = async (
