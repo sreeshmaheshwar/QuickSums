@@ -1,7 +1,7 @@
 type QuestionInfo = {
-  minNumber: number;
-  maxNumber: number;
-  additionOnly: boolean;
+  minNumber: number; // minimum number present in a question
+  maxNumber: number; // maximum number present in a question
+  subtractionPercentage: number; // fraction of generated questions that are subtractions
 };
 
 export default QuestionInfo;

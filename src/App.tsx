@@ -1,15 +1,13 @@
 import { useState } from "react";
 import PageHeader from "./components/header/Header";
+import { GlobalStyle, GlobalWrapper } from "./globalStyles";
 import GameOverScreen from "./screens/gameOverScreen/GameOverScreen";
 import GameScreen from "./screens/gameScreen/GameScreen";
 import JoinScreen from "./screens/joinScreen/JoinScreen";
-import { GlobalStyle, GlobalWrapper } from "./globalStyles";
+import DifficultyOption from "./types/DifficultyOption";
 import Question from "./types/Question";
-import fetchQuestions from "./util/fetchQuestions";
-import DifficultyOption, {
-  difficultyOptionMap,
-} from "./types/DifficultyOption";
 import TimeControlOption from "./types/TimeControlOption";
+import fetchQuestions from "./util/fetchQuestions";
 
 const MAX_QUESTIONS = 1000;
 

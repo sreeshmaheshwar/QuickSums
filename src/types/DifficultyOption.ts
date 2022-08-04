@@ -11,24 +11,27 @@ type DifficultyOption = typeof ALL_DIFFICULTIES[number];
 
 export const difficultyOptionMap: Record<DifficultyOption, QuestionInfo> = {
   Novice: {
+    // addition only, small numbers
     minNumber: 1,
     maxNumber: 10,
-    additionOnly: true,
+    subtractionPercentage: 0,
   },
   Beginner: {
+    // introduces subtraction
     minNumber: 2,
     maxNumber: 20,
-    additionOnly: false,
+    subtractionPercentage: 0.5,
   },
   Intermediate: {
+    // introduces large numbers
     minNumber: 20,
     maxNumber: 80,
-    additionOnly: false,
+    subtractionPercentage: 0.4,
   },
   Advanced: {
     minNumber: 50,
     maxNumber: 200,
-    additionOnly: false,
+    subtractionPercentage: 0.5,
   },
 };
 
