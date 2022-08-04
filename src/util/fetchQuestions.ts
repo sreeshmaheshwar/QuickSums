@@ -1,29 +1,85 @@
+import DifficultyOption, {
+  difficultyOptionMap,
+} from "../types/DifficultyOption";
 import Question from "../types/Question";
-import QuestionInfo from "../types/QuestionInfo";
 
-// TODO: support multiple operators & use additionOnly flag
+/* desired fraction of questions that are subtractions */
+const SUBTRACTION_PROBABILITY = 0.35;
+
+/* returns true with probability p, false otherwise */
+const generateBooleanWithProbability = (p: number): boolean =>
+  Math.random() < p;
+
+/* returns random integer in (inclusive) interval [l, r] */
+const generateRandomIntegerInRange = (l: number, r: number) =>
+  Math.floor(Math.random() * (r - l + 1)) + l;
+
+var cnt = 0;
+
 const fetchQuestions = async (
   numQuestions: number,
-  difficulty: QuestionInfo
+  difficulty: DifficultyOption
 ) => {
+  const { minNumber, maxNumber, additionOnly } =
+    difficultyOptionMap[difficulty];
   const questions: Question[] = new Array(numQuestions);
   for (let i = 0; i < numQuestions; ++i) {
-    questions[i] = generateRandomQuestion(difficulty);
+    questions[i] = generateRandomQuestion(
+      minNumber,
+      maxNumber,
+      generateBooleanWithProbability(additionOnly ? 0 : SUBTRACTION_PROBABILITY)
+    );
   }
+  console.log(cnt);
   return questions;
 };
 
-// generates a randum integer in the (inclusive) interval [left, right]
-const generateRandomNumberInRange = (left: number, right: number) =>
-  Math.floor(Math.random() * (right - left + 1)) + left;
+const generateRandomQuestion = (
+  minNumber: number,
+  maxNumber: number,
+  isSubtraction: boolean
+): Question => {
+  return isSubtraction
+    ? generateRandomSubtraction(minNumber, maxNumber)
+    : generateRandomAddition(minNumber, maxNumber);
+};
 
-const generateRandomQuestion = (difficulty: QuestionInfo): Question => {
-  const { minNumber, maxNumber } = difficulty;
-  const firstNumber = generateRandomNumberInRange(minNumber, maxNumber);
-  const secondNumber = generateRandomNumberInRange(minNumber, maxNumber);
+const generateRandomAddition = (
+  minNumber: number,
+  maxNumber: number
+): Question => {
+  var firstSummand, secondSummand;
+  do {
+    firstSummand = generateRandomIntegerInRange(minNumber, maxNumber);
+    secondSummand = generateRandomIntegerInRange(minNumber, maxNumber);
+  } while (firstSummand % 10 === 0 && secondSummand % 10 === 0); // multiples of 10 are too easy
+  cnt++;
   return {
-    prompt: `${firstNumber} + ${secondNumber}`,
-    correctAnswer: `${firstNumber + secondNumber}`,
+    prompt: `${firstSummand} + ${secondSummand}`,
+    correctAnswer: `${firstSummand + secondSummand}`,
+  };
+};
+
+/* ratio of subtrahend (b in a - b) to minuend (a in a - b), such that subtractions are not trivial */
+const subtrahendMinuendRatio = 0.8;
+
+const generateRandomSubtraction = (
+  minNumber: number,
+  maxNumber: number
+): Question => {
+  const avg = Math.floor((minNumber + maxNumber) / 2);
+  const minuend = generateRandomIntegerInRange(avg, maxNumber); // minuend should not be too small
+  var subtrahend;
+  do {
+    subtrahend = generateRandomIntegerInRange(
+      minNumber,
+      Math.round(minuend * subtrahendMinuendRatio)
+    );
+  } while (subtrahend % 10 == 0); // multiple of 10 is too easy
+  cnt--;
+  return {
+    prompt: `${minuend} - ${subtrahend}`,
+    correctAnswer: `${minuend - subtrahend}`,
   };
 };
 

@@ -24,14 +24,16 @@ const App = () => {
   );
 
   const startGame = async () => {
-    const generatedQuestions = await fetchQuestions(
-      MAX_QUESTIONS,
-      difficultyOptionMap[difficulty!]
-    );
-    setQuestions(generatedQuestions);
-    setQuestionIndex(0);
-    setJoinScreen(false);
-    setGameScreen(true);
+    if (difficulty && timeControl) {
+      const generatedQuestions = await fetchQuestions(
+        MAX_QUESTIONS,
+        difficulty
+      );
+      setQuestions(generatedQuestions);
+      setQuestionIndex(0);
+      setJoinScreen(false);
+      setGameScreen(true);
+    }
   };
 
   return (
@@ -41,9 +43,7 @@ const App = () => {
         <PageHeader />
         {joinScreen ? (
           <JoinScreen
-            callBack={() => {
-              if (!!difficulty && !!timeControl) startGame();
-            }}
+            callBack={startGame}
             setDifficultyOption={setDifficulty}
             setTimeControlOption={setTimeControl}
           />
