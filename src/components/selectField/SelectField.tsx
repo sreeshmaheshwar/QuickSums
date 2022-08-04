@@ -1,23 +1,23 @@
 import React from "react";
 import Select from "react-select";
-import DropDownOption from "../../types/DropDownOption";
 import "./SelectField.css";
 
 type Props = {
-  options: DropDownOption[];
-  value: DropDownOption | null;
-  setValue: any;
+  choices: readonly string[];
+  setValue: (e: string | null) => void;
 };
 
-const SelectField: React.FC<Props> = ({ options, value, setValue }) => {
+const SelectField: React.FC<Props> = ({ choices, setValue }) => {
   return (
-    <Select<DropDownOption>
+    <Select
       className="selection"
-      value={value}
-      getOptionLabel={(option) => option.label}
-      getOptionValue={(option) => option.value}
-      options={options}
-      onChange={(e) => setValue(e)}
+      options={choices.map((val) => ({
+        value: val,
+        label: val,
+      }))}
+      onChange={(e) => {
+        if (e) setValue(e.value);
+      }}
       isSearchable={false}
       theme={(theme) => ({
         ...theme,

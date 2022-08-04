@@ -4,9 +4,12 @@ import GameOverScreen from "./screens/gameOverScreen/GameOverScreen";
 import GameScreen from "./screens/gameScreen/GameScreen";
 import JoinScreen from "./screens/joinScreen/JoinScreen";
 import { GlobalStyle, GlobalWrapper } from "./globalStyles";
-import DropDownOption from "./types/DropDownOption";
 import Question from "./types/Question";
 import fetchQuestions from "./util/fetchQuestions";
+import DifficultyOption, {
+  difficultyOptionMap,
+} from "./types/DifficultyOption";
+import TimeControlOption from "./types/TimeControlOption";
 
 const MAX_QUESTIONS = 1000;
 
@@ -15,15 +18,15 @@ const App = () => {
   const [gameScreen, setGameScreen] = useState<boolean>(false);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
-  const [selectedDifficulty, setSelectedDifficulty] =
-    useState<DropDownOption | null>(null);
-  const [selectedTimeControl, setSelectedTimeControl] =
-    useState<DropDownOption | null>(null);
+  const [difficulty, setDifficulty] = useState<DifficultyOption | null>(null);
+  const [timeControl, setTimeControl] = useState<TimeControlOption | null>(
+    null
+  );
 
   const startGame = async () => {
     const generatedQuestions = await fetchQuestions(
       MAX_QUESTIONS,
-      selectedDifficulty?.value
+      difficultyOptionMap[difficulty!]
     );
     setQuestions(generatedQuestions);
     setQuestionIndex(0);
@@ -38,18 +41,18 @@ const App = () => {
         <PageHeader />
         {joinScreen ? (
           <JoinScreen
-            callBack={startGame}
-            selectedDifficulty={selectedDifficulty}
-            setSelectedDifficulty={setSelectedDifficulty}
-            selectedTimeControl={selectedTimeControl}
-            setSelectedTimeControl={setSelectedTimeControl}
+            callBack={() => {
+              if (!!difficulty && !!timeControl) startGame();
+            }}
+            setDifficultyOption={setDifficulty}
+            setTimeControlOption={setTimeControl}
           />
         ) : gameScreen ? (
           <GameScreen
             questions={questions}
             questionIndex={questionIndex}
             incrementQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
-            countdownTime={selectedTimeControl?.value}
+            timeControl={timeControl}
             endGame={() => setGameScreen(false)}
           />
         ) : (

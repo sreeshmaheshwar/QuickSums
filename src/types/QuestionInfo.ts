@@ -1,7 +1,7 @@
-type QuestionDifficulty = {
+type QuestionInfo = {
   minNumber: number;
   maxNumber: number;
   additionOnly: boolean;
 };
 
-export default QuestionDifficulty;
+export default QuestionInfo;

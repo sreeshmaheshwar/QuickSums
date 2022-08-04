@@ -1,46 +1,32 @@
 import React from "react";
 import SelectField from "../../components/selectField/SelectField";
-import DropDownOption, {
-  difficultyOptions,
-  timeControlOptions
-} from "../../types/DropDownOption";
+import { ALL_DIFFICULTIES } from "../../types/DifficultyOption";
+import { ALL_TIME_CONTROLS } from "../../types/TimeControlOption";
 import "./JoinScreen.css";
 
 type Props = {
   callBack: () => void;
-  selectedDifficulty: DropDownOption | null;
-  setSelectedDifficulty: any;
-  selectedTimeControl: DropDownOption | null;
-  setSelectedTimeControl: any;
+  setDifficultyOption: any;
+  setTimeControlOption: any;
 };
 
 const JoinScreen: React.FC<Props> = ({
   callBack,
-  selectedDifficulty,
-  setSelectedDifficulty,
-  selectedTimeControl,
-  setSelectedTimeControl,
+  setDifficultyOption,
+  setTimeControlOption,
 }) => {
   return (
     <>
       <p className="choice">Difficulty</p>
-      <SelectField
-        options={difficultyOptions}
-        value={selectedDifficulty}
-        setValue={setSelectedDifficulty}
-      />
+      <SelectField 
+        choices={ALL_DIFFICULTIES} 
+        setValue={setDifficultyOption} />
       <p className="choice">Time Control</p>
       <SelectField
-        options={timeControlOptions}
-        value={selectedTimeControl}
-        setValue={setSelectedTimeControl}
+        choices={ALL_TIME_CONTROLS}
+        setValue={setTimeControlOption}
       />
-      <button
-        className="start"
-        onClick={() => {
-          if (selectedDifficulty && selectedTimeControl) callBack();
-        }}
-      >
+      <button className="start" onClick={callBack}>
         Start Test
       </button>
     </>

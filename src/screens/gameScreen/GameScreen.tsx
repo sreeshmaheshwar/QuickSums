@@ -3,6 +3,7 @@ import GameStatistics from "../../components/gameStatistics/GameStatistics";
 import InputBox from "../../components/inputBox/InputBox";
 import QuestionPrompt from "../../components/questionPrompt/QuestionPrompt";
 import Question from "../../types/Question";
+import TimeControlOption, { timeControlOptionMap } from "../../types/TimeControlOption";
 
 const MILLISECONDS_PER_SECOND = 1000;
 
@@ -10,7 +11,7 @@ type Props = {
   questions: Question[];
   questionIndex: number;
   incrementQuestionIndex: () => void;
-  countdownTime: number;
+  timeControl: TimeControlOption | null;
   endGame: () => void;
 };
 
@@ -18,7 +19,7 @@ const GameScreen: React.FC<Props> = ({
   questions,
   questionIndex,
   incrementQuestionIndex,
-  countdownTime,
+  timeControl,
   endGame,
 }) => {
   const [inputBoxValue, setInputBoxValue] = useState<string>("");
@@ -27,7 +28,7 @@ const GameScreen: React.FC<Props> = ({
   );
 
   const startCountdown = () => {
-    setTimeout(endGame, countdownTime * MILLISECONDS_PER_SECOND);
+    setTimeout(endGame, timeControlOptionMap[timeControl!] * MILLISECONDS_PER_SECOND);
   };
 
   const checkInputtedAnswer = (e: React.KeyboardEvent<HTMLInputElement>) => {

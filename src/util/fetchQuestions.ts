@@ -1,10 +1,10 @@
 import Question from "../types/Question";
-import QuestionDifficulty from "../types/QuestionDifficulty";
+import QuestionInfo from "../types/QuestionInfo";
 
 // TODO: support multiple operators & use additionOnly flag
 const fetchQuestions = async (
   numQuestions: number,
-  difficulty: QuestionDifficulty
+  difficulty: QuestionInfo
 ) => {
   const questions: Question[] = new Array(numQuestions);
   for (let i = 0; i < numQuestions; ++i) {
@@ -17,7 +17,7 @@ const fetchQuestions = async (
 const generateRandomNumberInRange = (left: number, right: number) =>
   Math.floor(Math.random() * (right - left + 1)) + left;
 
-const generateRandomQuestion = (difficulty: QuestionDifficulty): Question => {
+const generateRandomQuestion = (difficulty: QuestionInfo): Question => {
   const { minNumber, maxNumber } = difficulty;
   const firstNumber = generateRandomNumberInRange(minNumber, maxNumber);
   const secondNumber = generateRandomNumberInRange(minNumber, maxNumber);
