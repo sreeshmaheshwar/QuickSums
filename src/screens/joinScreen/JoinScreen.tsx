@@ -23,13 +23,13 @@ const JoinScreen: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <p className="choice">Select Difficulty</p>
+      <p className="choice">Difficulty</p>
       <SelectField
         options={difficultyOptions}
         value={selectedDifficulty}
         setValue={setSelectedDifficulty}
       />
-      <p className="choice">Select Time Control</p>
+      <p className="choice">Time Control</p>
       <SelectField
         options={timeControlOptions}
         value={selectedTimeControl}

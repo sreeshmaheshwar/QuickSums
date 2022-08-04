@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
-    color: #444545;
+    color: #212121;
     border: none;
     appearance: none;
     background: #c1cdd9;

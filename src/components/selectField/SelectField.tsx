@@ -24,9 +24,9 @@ const SelectField: React.FC<Props> = ({ options, value, setValue }) => {
         borderRadius: 5,
         colors: {
           ...theme.colors,
-          neutral5: "black",
-          neutral20: "black",
-          neutral0: "#cfdcea",
+          neutral5: "#444545",
+          neutral20: "#444545",
+          neutral0: "#c1cdd9",
         },
       })}
     />
