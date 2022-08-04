@@ -14,12 +14,12 @@ const MAX_QUESTIONS = 1000;
 const App = () => {
   const [joinScreen, setJoinScreen] = useState<boolean>(true);
   const [gameScreen, setGameScreen] = useState<boolean>(false);
+
   const [questions, setQuestions] = useState<Question[]>([]);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
+
   const [difficulty, setDifficulty] = useState<DifficultyOption | null>(null);
-  const [timeControl, setTimeControl] = useState<TimeControlOption | null>(
-    null
-  );
+  const [timeControl, setTimeControl] = useState<TimeControlOption | null>(null);
 
   const startGame = async () => {
     if (difficulty && timeControl) {
@@ -56,7 +56,8 @@ const App = () => {
         ) : (
           <GameOverScreen
             score={questionIndex}
-            playAgain={() => setJoinScreen(true)}
+            playAgain={startGame}
+            backToSettings={() => setJoinScreen(true)}
           />
         )}
       </GlobalWrapper>

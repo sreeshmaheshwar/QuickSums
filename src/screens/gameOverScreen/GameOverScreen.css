@@ -1,3 +1,8 @@
-.endingMessage {
-    padding-bottom: 50px;
+.ending-message {
+  padding-bottom: 30px;
+  font-family: "Abel", sans-serif;
+}
+
+.final-button {
+  width: 300px;
 }
