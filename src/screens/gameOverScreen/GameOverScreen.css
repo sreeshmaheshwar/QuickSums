@@ -1,6 +1,29 @@
-.ending-message {
+.congratulations {
   padding-bottom: 30px;
+  color: #ebeff4;
   font-family: "Abel", sans-serif;
+  font-size: 30px;
+}
+
+.middle-result {
+  font-family: "Abel", sans-serif;
+  padding-bottom: 5px;
+  color: #aab3c0;
+  font-size: 25px;
+}
+
+.player-result {
+  font-family: "Abel", sans-serif;
+  padding-bottom: 5px;
+  color: #ebeff4;
+  font-size: 25px;
+}
+
+.bottom-result {
+  font-family: "Abel", sans-serif;
+  padding-bottom: 30px;
+  color: #aab3c0;
+  font-size: 25px;
 }
 
 .final-button {

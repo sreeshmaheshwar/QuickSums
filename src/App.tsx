@@ -56,6 +56,8 @@ const App = () => {
         ) : (
           <GameOverScreen
             score={questionIndex}
+            difficulty={difficulty!}
+            timeControl={timeControl!}
             playAgain={startGame}
             backToSettings={() => setJoinScreen(true)}
           />
