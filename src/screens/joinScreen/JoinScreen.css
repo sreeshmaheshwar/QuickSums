@@ -2,8 +2,15 @@
   margin: 50px;
 }
 
-.choice {
-  font-style: normal;
+.difficulty {
   font-weight: 300;
   font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.time-control {
+  padding-top: 10px;
+  font-weight: 300;
+  font-size: 20px;
+  padding-bottom: 10px;
 }

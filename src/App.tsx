@@ -8,7 +8,7 @@ import Question from "./types/Question";
 import TimeControlOption from "./types/TimeControlOption";
 import fetchQuestions from "./util/fetchQuestions";
 import styled from "styled-components";
-import "./App.css"
+import "./App.css";
 
 const MAX_QUESTIONS = 1000;
 
