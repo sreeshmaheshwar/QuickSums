@@ -1,6 +1,6 @@
 import Question from "../types/Question";
 
-const SUBTRAHEND_MINUEND_RATIO = 0.8;
+const MAX_SUBTRAHEND_MINUEND_RATIO = 0.8;
 
 const generateRandomIntegerInRange = (l: number, r: number) =>
   Math.floor(Math.random() * (r - l + 1)) + l;
@@ -15,9 +15,9 @@ const generateRandomSubtraction = (
   do {
     subtrahend = generateRandomIntegerInRange(
       minNumber,
-      Math.round(minuend * SUBTRAHEND_MINUEND_RATIO)
+      Math.round(minuend * MAX_SUBTRAHEND_MINUEND_RATIO)
     );
-  } while (subtrahend % 10 == 0); // multiple of 10 is too easy
+  } while (subtrahend % 10 === 0); // multiple of 10 is too easy
   return {
     prompt: `${minuend} - ${subtrahend}`,
     correctAnswer: `${minuend - subtrahend}`,
