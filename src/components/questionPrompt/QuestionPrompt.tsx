@@ -1,4 +1,5 @@
 import React from "react";
+import "./QuestionPrompt.css"
 
 type Props = {
   questionString: string;

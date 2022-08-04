@@ -1,9 +1,10 @@
-import logo from "../images/logo.png";
+import logo from "../../images/logo.png";
+import "./Header.css";
 
 const Header = () => (
   <>
     <img className="logo" src={logo} alt="Logo" />
-    <h1 className="quizName">QuickSums</h1>
+    <h1 className="quiz-name">QuickSums</h1>
   </>
 );
 

@@ -1,4 +1,5 @@
 import React from "react";
+import "./GameStatistics.css";
 
 const getStatistics = (questionsAnswered: number) => {
   switch (questionsAnswered) {
@@ -7,7 +8,7 @@ const getStatistics = (questionsAnswered: number) => {
     case 1:
       return "1 question answered";
     default:
-      return `${questionsAnswered} questions answered`
+      return `${questionsAnswered} questions answered`;
   }
 };
 
@@ -15,12 +16,10 @@ type Props = {
   questionsAnswered: number;
 };
 
-const QuestionStatistics: React.FC<Props> = ( { questionsAnswered }) => (
+const GameStatistics: React.FC<Props> = ({ questionsAnswered }) => (
   <div>
-    <p className="question-statistics">
-      {getStatistics(questionsAnswered)}
-    </p>
+    <p className="statistics">{getStatistics(questionsAnswered)}</p>
   </div>
 );
 
-export default QuestionStatistics;
+export default GameStatistics;

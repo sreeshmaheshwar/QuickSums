@@ -1,4 +1,5 @@
 import React from "react";
+import "./InputBox.css"
 
 type Props = {
   placeholder: string;
@@ -15,7 +16,7 @@ const InputBox: React.FC<Props> = ({
 }) => (
   <div>
     <input
-      className="userInputBox"
+      className="input-box"
       type="text"
       pattern="[0-9]*"
       maxLength={10}

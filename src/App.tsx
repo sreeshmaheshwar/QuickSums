@@ -1,16 +1,12 @@
 import { useState } from "react";
-// Components
-import PageHeader from "./components/Header";
-import GameOverScreen from "./components/screens/GameOverScreen";
-// Types
-import Question from "./types/Question";
-// Question Generation
-import fetchQuestions from "./question-generation/fetchQuestions";
-// Styles
-import { GlobalStyle, Wrapper } from "./App.styles";
-import JoinScreen from "./components/screens/JoinScreen";
-import GameScreen from "./components/screens/GameScreen";
+import PageHeader from "./components/header/Header";
+import GameOverScreen from "./screens/gameOverScreen/GameOverScreen";
+import GameScreen from "./screens/gameScreen/GameScreen";
+import JoinScreen from "./screens/joinScreen/JoinScreen";
+import { GlobalStyle, GlobalWrapper } from "./globalStyles";
 import DropDownOption from "./types/DropDownOption";
+import Question from "./types/Question";
+import fetchQuestions from "./util/fetchQuestions";
 
 const MAX_QUESTIONS = 1000;
 
@@ -38,7 +34,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <Wrapper>
+      <GlobalWrapper>
         <PageHeader />
         {joinScreen ? (
           <JoinScreen
@@ -62,7 +58,7 @@ const App = () => {
             playAgain={() => setJoinScreen(true)}
           />
         )}
-      </Wrapper>
+      </GlobalWrapper>
     </>
   );
 };

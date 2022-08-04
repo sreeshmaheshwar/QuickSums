@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import QuestionStatistics from "../QuestionStatistics";
-import QuestionPrompt from "../QuestionPrompt";
-import InputBox from "../InputBox";
+import GameStatistics from "../../components/gameStatistics/GameStatistics";
+import InputBox from "../../components/inputBox/InputBox";
+import QuestionPrompt from "../../components/questionPrompt/QuestionPrompt";
 import Question from "../../types/Question";
 
 const MILLISECONDS_PER_SECOND = 1000;
@@ -32,7 +32,7 @@ const GameScreen: React.FC<Props> = ({
 
   const checkInputtedAnswer = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
-      e.key == "Enter" &&
+      e.key === "Enter" &&
       e.target.value === questions[questionIndex].correctAnswer
     ) {
       setInputBoxValue("");
@@ -44,7 +44,7 @@ const GameScreen: React.FC<Props> = ({
 
   return (
     <>
-      <QuestionStatistics questionsAnswered={questionIndex} />
+      <GameStatistics questionsAnswered={questionIndex} />
       <QuestionPrompt questionString={questions[questionIndex].prompt} />
       <InputBox
         placeholder={inputBoxPlaceholder}

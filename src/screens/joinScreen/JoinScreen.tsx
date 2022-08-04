@@ -1,9 +1,10 @@
 import React from "react";
-import SelectField from "../SelectField";
+import SelectField from "../../components/selectField/SelectField";
 import DropDownOption, {
   difficultyOptions,
-  timeControlOptions,
+  timeControlOptions
 } from "../../types/DropDownOption";
+import "./JoinScreen.css";
 
 type Props = {
   callBack: () => void;
@@ -43,8 +44,6 @@ const JoinScreen: React.FC<Props> = ({
         Start Test
       </button>
     </>
-    /* <SelectField label="Difficulty" options={SupportedDifficulties} />
-      <SelectField label="Time control" options={["15s", "30s", "60s"]} /> */
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Select from "react-select";
-import DropDownOption from "../types/DropDownOption";
+import DropDownOption from "../../types/DropDownOption";
+import "./SelectField.css";
 
 type Props = {
   options: DropDownOption[];
@@ -17,6 +18,7 @@ const SelectField: React.FC<Props> = ({ options, value, setValue }) => {
       getOptionValue={(option) => option.value}
       options={options}
       onChange={(e) => setValue(e)}
+      isSearchable={false}
       theme={(theme) => ({
         ...theme,
         borderRadius: 5,

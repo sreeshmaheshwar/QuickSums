@@ -1,4 +1,5 @@
 import React from "react";
+import "./GameOverScreen.css"
 
 type Props = {
   score: number;
