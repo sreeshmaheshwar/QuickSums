@@ -1,5 +1,5 @@
 import React from "react";
-import "./InputBox.css"
+import "./InputBox.css";
 
 type Props = {
   placeholder: string;

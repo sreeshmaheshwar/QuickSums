@@ -18,9 +18,7 @@ const JoinScreen: React.FC<Props> = ({
   return (
     <>
       <p className="choice">Difficulty</p>
-      <SelectField 
-        choices={ALL_DIFFICULTIES} 
-        setValue={setDifficultyOption} />
+      <SelectField choices={ALL_DIFFICULTIES} setValue={setDifficultyOption} />
       <p className="choice">Time Control</p>
       <SelectField
         choices={ALL_TIME_CONTROLS}

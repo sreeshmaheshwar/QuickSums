@@ -1,8 +1,9 @@
 .start {
-    margin: 50px;
+  margin: 50px;
 }
 
 .choice {
-    font-style: italic;
-    font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
 }

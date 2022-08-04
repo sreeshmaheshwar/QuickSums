@@ -16,20 +16,20 @@ export const GlobalStyle = createGlobalStyle`
 
   * {
     margin: 0;
-    font-family: "Abel", sans-serif;
+    font-family: 'Lato', sans-serif;
   }
 
   button {
     cursor: pointer;
-    color: #212121;
-    border: none;
-    appearance: none;
+    color: #444545;
+    border: 10px;
     background: #c1cdd9;
     font-size: 20px;
     padding: 12px;
     border-radius: 10px;
     width: 250px;
     outline: none;
+    margin: 20px;
   }
 `;
 

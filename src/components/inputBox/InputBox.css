@@ -1,16 +1,17 @@
 .input-box {
-    color: #444545;
-    caret-color: #696c6d;
-    border: none;
-    appearance: none;
-    background: #cacaca;
-    font-size: 25px;
-    padding: 12px;
-    border-radius: 10px;
-    width: 300px;
-    outline: none;
+  color: #444545;
+  caret-color: #696c6d;
+  border: none;
+  appearance: none;
+  background: #cacaca;
+  font-size: 25px;
+  padding: 12px;
+  border-radius: 10px;
+  width: 300px;
+  outline: none;
+  font-family: "Abel", sans-serif;
 }
 
 .input-box::placeholder {
-    color: #8a8a8a;
+  color: #8a8a8a;
 }

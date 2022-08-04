@@ -1,6 +1,6 @@
 type Question = {
-    prompt: string;
-    correctAnswer: string;
+  prompt: string;
+  correctAnswer: string;
 };
 
 export default Question;
