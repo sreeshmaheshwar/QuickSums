@@ -1,6 +1,5 @@
 import { useState } from "react";
 import PageHeader from "./components/header/Header";
-import { GlobalStyle, GlobalWrapper } from "./globalStyles";
 import GameOverScreen from "./screens/gameOverScreen/GameOverScreen";
 import GameScreen from "./screens/gameScreen/GameScreen";
 import JoinScreen from "./screens/joinScreen/JoinScreen";
@@ -8,8 +7,16 @@ import DifficultyOption from "./types/DifficultyOption";
 import Question from "./types/Question";
 import TimeControlOption from "./types/TimeControlOption";
 import fetchQuestions from "./util/fetchQuestions";
+import styled from "styled-components";
+import "./App.css"
 
 const MAX_QUESTIONS = 1000;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const App = () => {
   const [joinScreen, setJoinScreen] = useState<boolean>(true);
@@ -35,9 +42,8 @@ const App = () => {
   };
 
   return (
-    <>
-      <GlobalStyle />
-      <GlobalWrapper>
+    <div className="main-container">
+      <Wrapper>
         <PageHeader />
         {joinScreen ? (
           <JoinScreen
@@ -62,8 +68,8 @@ const App = () => {
             backToSettings={() => setJoinScreen(true)}
           />
         )}
-      </GlobalWrapper>
-    </>
+      </Wrapper>
+    </div>
   );
 };
 
