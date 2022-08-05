@@ -65,7 +65,11 @@ const App = () => {
             difficulty={difficulty!}
             timeControl={timeControl!}
             playAgain={startGame}
-            backToSettings={() => setJoinScreen(true)}
+            backToSettings={() => {
+              setJoinScreen(true);
+              setDifficulty(null);
+              setTimeControl(null);
+            }}
           />
         )}
       </Wrapper>
