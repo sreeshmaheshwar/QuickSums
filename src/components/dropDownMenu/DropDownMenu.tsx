@@ -1,13 +1,16 @@
-import React from "react";
+import { PropsWithChildren } from "react";
 import Select from "react-select";
-import "./SelectField.css";
+import "./DropDownMenu.css";
 
-type Props = {
-  choices: readonly string[];
-  setValue: (e: string | null) => void;
+type Props<T> = {
+  choices: readonly T[];
+  handleChange: (selection: T) => void;
 };
 
-const SelectField: React.FC<Props> = ({ choices, setValue }) => {
+function DropDownMenu<T extends string>({
+  choices,
+  handleChange,
+}: PropsWithChildren<Props<T>>) {
   return (
     <Select
       className="selection"
@@ -16,7 +19,7 @@ const SelectField: React.FC<Props> = ({ choices, setValue }) => {
         label: val,
       }))}
       onChange={(e) => {
-        if (e) setValue(e.value);
+        if (e) handleChange(e.value);
       }}
       isSearchable={false}
       theme={(theme) => ({
@@ -30,6 +33,6 @@ const SelectField: React.FC<Props> = ({ choices, setValue }) => {
       })}
     />
   );
-};
+}
 
-export default SelectField;
+export default DropDownMenu;

@@ -35,8 +35,8 @@ const App = () => {
       {joinScreen ? (
         <JoinScreen
           callBack={startGame}
-          setDifficultyOption={setDifficulty}
-          setTimeControlOption={setTimeControl}
+          handleDifficultyChange={(selection) => setDifficulty(selection)}
+          handleTimeControlChange={(selection) => setTimeControl(selection)}
         />
       ) : gameScreen ? (
         <GameScreen

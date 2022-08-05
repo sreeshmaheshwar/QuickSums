@@ -1,28 +1,35 @@
 import React from "react";
-import SelectField from "../../components/selectField/SelectField";
-import { ALL_DIFFICULTIES } from "../../types/DifficultyOption";
-import { ALL_TIME_CONTROLS } from "../../types/TimeControlOption";
+import DropDownMenu from "../../components/dropDownMenu/DropDownMenu";
+import DifficultyOption, {
+  ALL_DIFFICULTIES
+} from "../../types/DifficultyOption";
+import TimeControlOption, {
+  ALL_TIME_CONTROLS
+} from "../../types/TimeControlOption";
 import "./JoinScreen.css";
 
 type Props = {
   callBack: () => void;
-  setDifficultyOption: any;
-  setTimeControlOption: any;
+  handleDifficultyChange: (selection: DifficultyOption) => void;
+  handleTimeControlChange: (selection: TimeControlOption) => void;
 };
 
 const JoinScreen: React.FC<Props> = ({
   callBack,
-  setDifficultyOption,
-  setTimeControlOption,
+  handleDifficultyChange,
+  handleTimeControlChange,
 }) => {
   return (
     <>
       <p className="difficulty">Difficulty</p>
-      <SelectField choices={ALL_DIFFICULTIES} setValue={setDifficultyOption} />
+      <DropDownMenu
+        choices={ALL_DIFFICULTIES}
+        handleChange={handleDifficultyChange}
+      />
       <p className="time-control">Time Control</p>
-      <SelectField
+      <DropDownMenu
         choices={ALL_TIME_CONTROLS}
-        setValue={setTimeControlOption}
+        handleChange={handleTimeControlChange}
       />
       <button className="start" onClick={callBack}>
         Start Test
