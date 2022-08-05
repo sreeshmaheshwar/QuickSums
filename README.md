@@ -4,7 +4,7 @@
 
 ## Question Generation
 
-QuickSums generates random arithmetic questions corresponding to the chosen difficulty mode. Please refer to the source code (specifically [src/util/generateRandomQuestion.ts](https://github.com/sreeshmaheshwar/QuickSums/blob/master/src/util/generateRandomQuestion.ts)) for more information regarding question generation, as in this project it is implemented from scratch.
+QuickSums generates random arithmetic questions corresponding to the chosen difficulty mode. Please refer to the source code (specifically [src/util/generateRandomQuestion.ts](https://github.com/sreeshmaheshwar/QuickSums/blob/master/src/util/generateRandomQuestion.ts) and [src/types/DifficultyOption.ts](https://github.com/sreeshmaheshwar/QuickSums/blob/master/src/types/DifficultyOption.ts)) for more information regarding question generation, as in this project it is implemented from scratch.
 
 ## Available Scripts
 
