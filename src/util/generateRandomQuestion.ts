@@ -10,35 +10,34 @@ import Question from "../types/Question";
 
 /*
 returns an "uniformly" random integer in the (inclusive)
-interval [l, r] for integers l and r.
+interval [l, r] for integers l and r
 */
 const generateRandomIntegerInRange = (l: number, r: number) =>
   Math.floor(Math.random() * (r - l + 1)) + l;
 
 /*
-if the relative proximity of the subtrahend to the minuend
-is too small, the question will be uncharacteristically easy.
-For example, consider a "difficult" subtraction with numbers
-greater than 600: a subtraction is "650 - 645" would not
- correspond to the desired difficulty. Hence, we fix the
-maximum ratio of the subtrahend to the minuend to avoid this.
+We fix the maximum ratio of the subtrahend to the minuend,
+since if the subtrahend is too close to the minuend, the 
+question will be uncharacteristically easy. For example, 
+consider a "difficult" subtraction involving numbers greater 
+than 800: a subtraction of "850 - 845" would not correspond 
+to this desired difficulty.
 */
 const MAX_SUBTRAHEND_MINUEND_RATIO = 0.8;
 
 /*
-returns a random subtraction corresponding the the given difficulty
-measure of [minNumber, maxNumber]. Note that the minuend should not
-be too small, as may cause a delay in generating a corresponding
-subtrahend, so we enforce that it lies in the upper half of the 
-interval. We further enforce that the subtrahend is not a multiple
-of ten, as this may lead to an uncharacteristically easy question.
+returns a random subtraction corresponding to the given difficulty
+measure of [minNumber, maxNumber]. 
+We enforce that the subtrahend is not a multiple of ten, as this 
+may lead to too easy a question, and also that the minuend roughly 
+lies in the upper half of the interval provided, for similar reasons.
 */
 const generateRandomSubtraction = (
   minNumber: number,
   maxNumber: number
 ): Question => {
-  const avg = Math.floor((minNumber + maxNumber) / 2);
-  const minuend = generateRandomIntegerInRange(avg, maxNumber);
+  const average = Math.floor((minNumber + maxNumber) / 2);
+  const minuend = generateRandomIntegerInRange(average, maxNumber);
   var subtrahend;
   do {
     subtrahend = generateRandomIntegerInRange(
@@ -54,8 +53,9 @@ const generateRandomSubtraction = (
 
 /*
 returns a random addition corresponding the the given difficulty
-measure of [minNumber, maxNumber]. We enforce that both summands are
-not multiples of ten, as this may lead to too easy a question.
+measure of [minNumber, maxNumber]. 
+We enforce that both summands are not multiples of ten, as this 
+may lead to too easy a question.
 */
 const generateRandomAddition = (
   minNumber: number,
