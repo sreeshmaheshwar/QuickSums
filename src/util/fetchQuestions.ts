@@ -4,18 +4,17 @@ import DifficultyOption, {
 import Question from "../types/Question";
 import generateRandomQuestion from "./generateRandomQuestion";
 
+const MAX_QUESTIONS = 1000;
+
 /* returns true with probability p, false otherwise */
 const generateBooleanWithProbability = (p: number): boolean =>
   Math.random() < p;
 
-const fetchQuestions = async (
-  numQuestions: number,
-  difficulty: DifficultyOption
-) => {
+const fetchQuestions = async (difficulty: DifficultyOption) => {
   const { minNumber, maxNumber, subtractionPercentage } =
     difficultyOptionMap[difficulty];
-  const questions: Question[] = new Array(numQuestions);
-  for (let i = 0; i < numQuestions; ++i) {
+  const questions: Question[] = new Array(MAX_QUESTIONS);
+  for (let i = 0; i < MAX_QUESTIONS; ++i) {
     do {
       questions[i] = generateRandomQuestion(
         minNumber,

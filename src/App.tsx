@@ -7,16 +7,7 @@ import DifficultyOption from "./types/DifficultyOption";
 import Question from "./types/Question";
 import TimeControlOption from "./types/TimeControlOption";
 import fetchQuestions from "./util/fetchQuestions";
-import styled from "styled-components";
 import "./App.css";
-
-const MAX_QUESTIONS = 1000;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const App = () => {
   const [joinScreen, setJoinScreen] = useState<boolean>(true);
@@ -30,10 +21,7 @@ const App = () => {
 
   const startGame = async () => {
     if (difficulty && timeControl) {
-      const generatedQuestions = await fetchQuestions(
-        MAX_QUESTIONS,
-        difficulty
-      );
+      const generatedQuestions = await fetchQuestions(difficulty);
       setQuestions(generatedQuestions);
       setQuestionIndex(0);
       setJoinScreen(false);
@@ -43,36 +31,34 @@ const App = () => {
 
   return (
     <div className="main-container">
-      <Wrapper>
-        <PageHeader />
-        {joinScreen ? (
-          <JoinScreen
-            callBack={startGame}
-            setDifficultyOption={setDifficulty}
-            setTimeControlOption={setTimeControl}
-          />
-        ) : gameScreen ? (
-          <GameScreen
-            questions={questions}
-            questionIndex={questionIndex}
-            incrementQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
-            timeControl={timeControl}
-            endGame={() => setGameScreen(false)}
-          />
-        ) : (
-          <GameOverScreen
-            score={questionIndex}
-            difficulty={difficulty!}
-            timeControl={timeControl!}
-            playAgain={startGame}
-            backToSettings={() => {
-              setJoinScreen(true);
-              setDifficulty(null);
-              setTimeControl(null);
-            }}
-          />
-        )}
-      </Wrapper>
+      <PageHeader />
+      {joinScreen ? (
+        <JoinScreen
+          callBack={startGame}
+          setDifficultyOption={setDifficulty}
+          setTimeControlOption={setTimeControl}
+        />
+      ) : gameScreen ? (
+        <GameScreen
+          questions={questions}
+          questionIndex={questionIndex}
+          incrementQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
+          timeControl={timeControl}
+          endGame={() => setGameScreen(false)}
+        />
+      ) : (
+        <GameOverScreen
+          score={questionIndex}
+          difficulty={difficulty!}
+          timeControl={timeControl!}
+          playAgain={startGame}
+          backToSettings={() => {
+            setJoinScreen(true);
+            setDifficulty(null);
+            setTimeControl(null);
+          }}
+        />
+      )}
     </div>
   );
 };
