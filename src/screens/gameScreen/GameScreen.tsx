@@ -8,12 +8,13 @@ import TimeControlOption, {
 } from "../../types/TimeControlOption";
 
 const MILLISECONDS_PER_SECOND = 1000;
+const DEFAULT_PLACEHOLDER = "Enter answer, e.g. 42";
 
 type Props = {
   questions: Question[];
   questionIndex: number;
   incrementQuestionIndex: () => void;
-  timeControl: TimeControlOption | null;
+  timeControl: TimeControlOption;
   endGame: () => void;
 };
 
@@ -25,14 +26,12 @@ const GameScreen: React.FC<Props> = ({
   endGame,
 }) => {
   const [inputBoxValue, setInputBoxValue] = useState<string>("");
-  const [inputBoxPlaceholder, setInputBoxPlaceHolder] = useState<string>(
-    "Enter answer, e.g. 42"
-  );
+  const [inputBoxPlaceholder, setInputBoxPlaceHolder] = useState<string>(DEFAULT_PLACEHOLDER);
 
   const startCountdown = () => {
     setTimeout(
       endGame,
-      timeControlOptionMap[timeControl!] * MILLISECONDS_PER_SECOND
+      timeControlOptionMap[timeControl] * MILLISECONDS_PER_SECOND
     );
   };
 
@@ -57,8 +56,8 @@ const GameScreen: React.FC<Props> = ({
         value={inputBoxValue}
         handleKeyDown={checkInputtedAnswer}
         handleChange={(e) => {
-          setInputBoxValue((v) =>
-            e.target.validity.valid ? e.target.value : v
+          setInputBoxValue((val) =>
+            e.target.validity.valid ? e.target.value : val
           );
         }}
       />

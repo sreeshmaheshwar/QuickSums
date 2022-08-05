@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageHeader from "./components/header/Header";
+import PageHeading from "./components/pageHeading/PageHeading";
 import GameOverScreen from "./screens/gameOverScreen/GameOverScreen";
 import GameScreen from "./screens/gameScreen/GameScreen";
 import JoinScreen from "./screens/joinScreen/JoinScreen";
@@ -31,19 +31,19 @@ const App = () => {
 
   return (
     <div className="main-container">
-      <PageHeader />
+      <PageHeading />
       {joinScreen ? (
         <JoinScreen
-          callBack={startGame}
-          handleDifficultyChange={(selection) => setDifficulty(selection)}
-          handleTimeControlChange={(selection) => setTimeControl(selection)}
+          handleDifficultyChange={setDifficulty}
+          handleTimeControlChange={setTimeControl}
+          startGame={startGame}
         />
       ) : gameScreen ? (
         <GameScreen
           questions={questions}
           questionIndex={questionIndex}
           incrementQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
-          timeControl={timeControl}
+          timeControl={timeControl!}
           endGame={() => setGameScreen(false)}
         />
       ) : (

@@ -9,15 +9,15 @@ import TimeControlOption, {
 import "./JoinScreen.css";
 
 type Props = {
-  callBack: () => void;
   handleDifficultyChange: (selection: DifficultyOption) => void;
   handleTimeControlChange: (selection: TimeControlOption) => void;
+  startGame: () => void;
 };
 
 const JoinScreen: React.FC<Props> = ({
-  callBack,
   handleDifficultyChange,
   handleTimeControlChange,
+  startGame,
 }) => {
   return (
     <>
@@ -31,7 +31,7 @@ const JoinScreen: React.FC<Props> = ({
         choices={ALL_TIME_CONTROLS}
         handleChange={handleTimeControlChange}
       />
-      <button className="start" onClick={callBack}>
+      <button className="start" onClick={startGame}>
         Start Test
       </button>
     </>
