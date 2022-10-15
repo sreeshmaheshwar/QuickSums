@@ -6,11 +6,11 @@ import generateRandomQuestion from "./generateRandomQuestion";
 
 const NUM_QUESTIONS_GENERATED = 1000;
 
-// returns true with probability p, false otherwise
+/* Returns true with probability p, false otherwise. */
 const generateBooleanWithProbability = (p: number): boolean =>
   Math.random() < p;
 
-const fetchQuestions = async (difficulty: DifficultyOption) => {
+const fetchQuestions = (difficulty: DifficultyOption) => {
   const { minNumber, maxNumber, subtractionPercentage } =
     difficultyOptionMap[difficulty];
   const questions: Question[] = new Array(NUM_QUESTIONS_GENERATED);

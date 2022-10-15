@@ -19,9 +19,9 @@ const App = () => {
   const [difficulty, setDifficulty] = useState<DifficultyOption | null>(null);
   const [timeControl, setTimeControl] = useState<TimeControlOption | null>(null);
 
-  const startGame = async () => {
+  const startGame = () => {
     if (difficulty && timeControl) {
-      const generatedQuestions = await fetchQuestions(difficulty);
+      const generatedQuestions = fetchQuestions(difficulty);
       setQuestions(generatedQuestions);
       setQuestionIndex(0);
       setJoinScreen(false);
